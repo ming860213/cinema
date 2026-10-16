@@ -60,4 +60,16 @@ public class EmployeeController {
         return Result.success(employeeLoginVO);
     }
 
+    /**
+     * 退出
+     *
+     * @return
+     */
+    @PostMapping("/logout")
+    @ApiOperation(value = "员工退出")
+    public Result<String> logout() {
+        return Result.success();
+    }
+
+
 }
