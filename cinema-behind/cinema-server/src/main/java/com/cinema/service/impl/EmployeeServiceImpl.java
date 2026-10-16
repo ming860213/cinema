@@ -2,12 +2,15 @@ package com.cinema.service.impl;
 
 import com.cinema.constant.MessageConstant;
 import com.cinema.constant.PasswordConstant;
+import com.cinema.constant.StatusConstant;
+import com.cinema.dto.EmployeeDTO;
 import com.cinema.dto.EmployeeLoginDTO;
 import com.cinema.entity.Employee;
 import com.cinema.exception.AccountNotFoundException;
 import com.cinema.exception.PasswordErrorException;
 import com.cinema.mapper.EmployeeMapper;
 import com.cinema.service.EmployeeService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -37,5 +40,13 @@ public class EmployeeServiceImpl implements EmployeeService {
          }
          //返回实体对象
          return employee;
+    }
+
+    @Override
+    public void save(EmployeeDTO employeeDTO) {
+        Employee employee=new Employee();
+        BeanUtils.copyProperties(employeeDTO,employee);
+        employee.setStatus(StatusConstant.ENABLE);
+        employeeMapper.save(employee);
     }
 }
