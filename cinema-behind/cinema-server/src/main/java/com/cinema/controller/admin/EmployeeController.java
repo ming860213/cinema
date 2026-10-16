@@ -1,6 +1,7 @@
 package com.cinema.controller.admin;
 
 import com.cinema.constant.JwtClaimsConstant;
+import com.cinema.dto.EmployeeDTO;
 import com.cinema.dto.EmployeeLoginDTO;
 import com.cinema.entity.Employee;
 import com.cinema.properties.JwtProperties;
@@ -71,5 +72,16 @@ public class EmployeeController {
         return Result.success();
     }
 
-
+    /**
+     * 新增员工
+     * @param employeeDTO
+     * @return
+     */
+    @PostMapping
+    @ApiOperation(value = "新增员工接口")
+    public Result save(@RequestBody EmployeeDTO employeeDTO){
+        log.info("成功新增员工:{}",employeeDTO);
+        employeeService.save(employeeDTO);
+        return  Result.success();
+    }
 }
