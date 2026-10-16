@@ -1,0 +1,8 @@
+package com.cinema.exception;
+
+public class UserNotLoginException extends BaseException{
+    public UserNotLoginException(String msg){
+        super(msg);
+    }
+    public UserNotLoginException(){}
+}

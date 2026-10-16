@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      driver-class-name: ${cinema.datasource.driver-class-name}
+      url: jdbc:mysql://${cinema.datasource.host}:${cinema.datasource.port}/${cinema.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${cinema.datasource.username}
+      password: ${cinema.datasource.password}
+
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.yx.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      cinema:
+        mapper: debug
+        service: info
+        controller: info
+
+cinema:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: itcast
+    # 设置jwt过期时间
+    admin-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+  alioss:
+    endpoint: ${cinema.alioss.endpoint}
+    access-key-id: ${cinema.alioss.access-key-id}
+    access-key-secret: ${cinema.alioss.access-key-secret}
+    bucket-name: ${cinema.alioss.bucket-name}
