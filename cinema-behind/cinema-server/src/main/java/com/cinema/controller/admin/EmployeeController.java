@@ -104,6 +104,12 @@ public class EmployeeController {
         return Result.success(employee);
     }
 
+    /**
+     * 启用或禁用员工
+     * @param status
+     * @param id
+     * @return
+     */
     @PostMapping("/status/{status}")
     public Result startOrStop(@PathVariable Integer status,Long id){
         employeeService.startOrStop(status,id);
