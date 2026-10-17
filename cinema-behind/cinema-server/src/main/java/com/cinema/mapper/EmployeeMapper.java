@@ -1,8 +1,10 @@
 package com.cinema.mapper;
 
 import com.cinema.annotation.AutoFill;
+import com.cinema.dto.EmployeePageQueryDTO;
 import com.cinema.entity.Employee;
 import com.cinema.enumeration.OperationType;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -24,4 +26,11 @@ public interface EmployeeMapper {
      */
     @AutoFill(value = OperationType.INSERT)
     void save(Employee employee);
+
+    /**
+     * 员工分页查询
+     * @param employeePageQueryDTO
+     * @return
+     */
+    Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 }

@@ -1,15 +1,21 @@
 package com.cinema.service.impl;
 
+import com.alibaba.druid.sql.PagerUtils;
 import com.cinema.constant.MessageConstant;
 import com.cinema.constant.PasswordConstant;
 import com.cinema.constant.StatusConstant;
 import com.cinema.dto.EmployeeDTO;
 import com.cinema.dto.EmployeeLoginDTO;
+import com.cinema.dto.EmployeePageQueryDTO;
 import com.cinema.entity.Employee;
 import com.cinema.exception.AccountNotFoundException;
 import com.cinema.exception.PasswordErrorException;
 import com.cinema.mapper.EmployeeMapper;
+import com.cinema.result.PageResult;
+import com.cinema.result.Result;
 import com.cinema.service.EmployeeService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,11 +48,27 @@ public class EmployeeServiceImpl implements EmployeeService {
          return employee;
     }
 
-    @Override
+    /**
+     * 新增员工
+     * @param employeeDTO
+     */
     public void save(EmployeeDTO employeeDTO) {
         Employee employee=new Employee();
         BeanUtils.copyProperties(employeeDTO,employee);
         employee.setStatus(StatusConstant.ENABLE);
         employeeMapper.save(employee);
+    }
+
+    /**
+     * 员工分页查询
+     * @param employeePageQueryDTO
+     * @return
+     */
+    public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
+        PageHelper.startPage(employeePageQueryDTO.getPage(),employeePageQueryDTO.getPageSize());
+
+        Page<Employee> page=employeeMapper.pageQuery(employeePageQueryDTO);
+        PageResult pageResult=new PageResult(page.getTotal(),page.getResult());
+        return pageResult;
     }
 }

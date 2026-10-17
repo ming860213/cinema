@@ -3,20 +3,20 @@ package com.cinema.controller.admin;
 import com.cinema.constant.JwtClaimsConstant;
 import com.cinema.dto.EmployeeDTO;
 import com.cinema.dto.EmployeeLoginDTO;
+import com.cinema.dto.EmployeePageQueryDTO;
 import com.cinema.entity.Employee;
 import com.cinema.properties.JwtProperties;
+import com.cinema.result.PageResult;
 import com.cinema.result.Result;
 import com.cinema.service.EmployeeService;
 import com.cinema.utils.JwtUtil;
 import com.cinema.vo.EmployeeLoginVO;
+import com.github.pagehelper.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -83,5 +83,11 @@ public class EmployeeController {
         log.info("成功新增员工:{}",employeeDTO);
         employeeService.save(employeeDTO);
         return  Result.success();
+    }
+
+    @GetMapping
+    @ApiOperation(value = "员工分页查询")
+    public Result<PageResult> page(@RequestBody EmployeePageQueryDTO employeePageQueryDTO){
+        PageResult PageQuery= employeeService.pageQuery(employeePageQueryDTO);
     }
 }
