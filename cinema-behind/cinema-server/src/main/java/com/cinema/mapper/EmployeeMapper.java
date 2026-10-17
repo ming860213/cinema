@@ -5,7 +5,6 @@ import com.cinema.dto.EmployeePageQueryDTO;
 import com.cinema.entity.Employee;
 import com.cinema.enumeration.OperationType;
 import com.github.pagehelper.Page;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
