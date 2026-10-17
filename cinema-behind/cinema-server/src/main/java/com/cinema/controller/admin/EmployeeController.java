@@ -131,8 +131,13 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * 编辑员工信息
+     * @param employeeDTO
+     * @return
+     */
     @PutMapping
-    @AutoFill(value = "编辑员工信息")
+    @ApiOperation(value = "编辑员工信息")
     public Result update(EmployeeDTO employeeDTO){
         log.info("编辑员工信息:{}",employeeDTO);
         employeeService.update(employeeDTO);
