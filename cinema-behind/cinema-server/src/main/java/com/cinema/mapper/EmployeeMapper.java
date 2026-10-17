@@ -25,7 +25,7 @@ public interface EmployeeMapper {
      * @param employee
      */
     @AutoFill(value = OperationType.INSERT)
-    void save(Employee employee);
+    void insert(Employee employee);
 
     /**
      * 员工分页查询
