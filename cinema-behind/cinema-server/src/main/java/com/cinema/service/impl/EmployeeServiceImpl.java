@@ -57,7 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee=new Employee();
         BeanUtils.copyProperties(employeeDTO,employee);
         employee.setStatus(StatusConstant.ENABLE);
-        employeeMapper.save(employee);
+        employeeMapper.insert(employee);
     }
 
     /**
