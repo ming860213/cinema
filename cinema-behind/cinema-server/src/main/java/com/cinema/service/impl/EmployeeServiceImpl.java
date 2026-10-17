@@ -122,4 +122,14 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .build();
         employeeMapper.update(emp);
     }
+
+    /**
+     * 修改员工信息
+     * @param employeeDTO
+     */
+    public void update(EmployeeDTO employeeDTO) {
+        Employee employee=new Employee();
+        BeanUtils.copyProperties(employeeDTO,employee);
+        employeeMapper.update(employee);
+    }
 }

@@ -1,5 +1,6 @@
 package com.cinema.controller.admin;
 
+import com.cinema.annotation.AutoFill;
 import com.cinema.constant.JwtClaimsConstant;
 import com.cinema.dto.EmployeeDTO;
 import com.cinema.dto.EmployeeLoginDTO;
@@ -130,4 +131,11 @@ public class EmployeeController {
         return Result.success();
     }
 
+    @PutMapping
+    @AutoFill(value = "编辑员工信息")
+    public Result update(EmployeeDTO employeeDTO){
+        log.info("编辑员工信息:{}",employeeDTO);
+        employeeService.update(employeeDTO);
+        return Result.success();
+    }
 }
