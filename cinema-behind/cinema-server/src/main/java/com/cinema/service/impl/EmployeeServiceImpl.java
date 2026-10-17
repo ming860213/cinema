@@ -7,6 +7,7 @@ import com.cinema.constant.StatusConstant;
 import com.cinema.dto.EmployeeDTO;
 import com.cinema.dto.EmployeeLoginDTO;
 import com.cinema.dto.EmployeePageQueryDTO;
+import com.cinema.dto.PasswordEditDTO;
 import com.cinema.entity.Employee;
 import com.cinema.exception.AccountNotFoundException;
 import com.cinema.exception.PasswordErrorException;
@@ -93,5 +94,32 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .status(status)
                 .build();
         employeeMapper.update(employee);
+    }
+
+    /**
+     * 员工修改密码
+     * @param passwordEditDTO
+     */
+    public void updatePassword(PasswordEditDTO passwordEditDTO) {
+        //取得数据库中数据
+        Employee employee= employeeMapper.getById(passwordEditDTO.getEmpId());
+        //校验密码是否新旧一样
+        String password= passwordEditDTO.getOldPassword();
+        if(password.equals(passwordEditDTO.getNewPassword())){
+            throw new PasswordErrorException(MessageConstant.PASSWORD_REPEAT_FAILED);
+        }
+        password= DigestUtils.md5DigestAsHex(password.getBytes());
+        //校验旧密码是否与数据库一致
+        if(!password.equals(employee.getPassword())){
+            throw new PasswordErrorException(MessageConstant.PASSWORD_ERROR);
+        }
+        //取新密码md5加密
+        String pwd= DigestUtils.md5DigestAsHex(passwordEditDTO.getNewPassword().getBytes());
+        //将密码传入mapper层
+        Employee emp =Employee.builder()
+                .id(passwordEditDTO.getEmpId())
+                .password(pwd)
+                .build();
+        employeeMapper.update(emp);
     }
 }

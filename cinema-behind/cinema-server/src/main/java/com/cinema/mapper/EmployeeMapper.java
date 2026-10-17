@@ -46,5 +46,6 @@ public interface EmployeeMapper {
      * 更新员工信息
      * @param employee
      */
+    @AutoFill(value = OperationType.UPDATE)
     void update(Employee employee);
 }

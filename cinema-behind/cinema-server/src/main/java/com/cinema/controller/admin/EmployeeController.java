@@ -4,6 +4,7 @@ import com.cinema.constant.JwtClaimsConstant;
 import com.cinema.dto.EmployeeDTO;
 import com.cinema.dto.EmployeeLoginDTO;
 import com.cinema.dto.EmployeePageQueryDTO;
+import com.cinema.dto.PasswordEditDTO;
 import com.cinema.entity.Employee;
 import com.cinema.properties.JwtProperties;
 import com.cinema.result.PageResult;
@@ -115,4 +116,18 @@ public class EmployeeController {
         employeeService.startOrStop(status,id);
         return Result.success();
     }
+
+    /**
+     * 员工修改密码
+     * @param passwordEditDTO
+     * @return
+     */
+    @PutMapping("/editPassword")
+    @ApiOperation(value = "员工修改密码接口")
+    public Result updatePassword(@RequestBody PasswordEditDTO passwordEditDTO){
+        log.info("修改密码:{}",passwordEditDTO);
+        employeeService.updatePassword(passwordEditDTO);
+        return Result.success();
+    }
+
 }

@@ -4,6 +4,7 @@ package com.cinema.service;
 import com.cinema.dto.EmployeeDTO;
 import com.cinema.dto.EmployeeLoginDTO;
 import com.cinema.dto.EmployeePageQueryDTO;
+import com.cinema.dto.PasswordEditDTO;
 import com.cinema.entity.Employee;
 import com.cinema.result.PageResult;
 
@@ -42,4 +43,10 @@ public interface EmployeeService {
      * @param status
      */
     void startOrStop(Integer status,Long id);
+
+    /**
+     * 员工修改密码
+     * @param passwordEditDTO
+     */
+    void updatePassword(PasswordEditDTO passwordEditDTO);
 }
