@@ -91,4 +91,18 @@ public class EmployeeController {
         PageResult PageQuery= employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(PageQuery);
     }
+
+    /**
+     * 根据id查询员工
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation(value="根据id查询员工")
+    public Result getById(@PathVariable Long id){
+        Employee employee= employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+
 }

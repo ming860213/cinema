@@ -6,8 +6,6 @@ import com.cinema.dto.EmployeeLoginDTO;
 import com.cinema.dto.EmployeePageQueryDTO;
 import com.cinema.entity.Employee;
 import com.cinema.result.PageResult;
-import com.cinema.result.Result;
-import com.github.pagehelper.Page;
 
 public interface EmployeeService {
 
@@ -30,4 +28,12 @@ public interface EmployeeService {
      * @return
      */
      PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * 根据id查询员工
+     *
+     * @param id
+     * @return
+     */
+    Employee getById(Long id);
 }
