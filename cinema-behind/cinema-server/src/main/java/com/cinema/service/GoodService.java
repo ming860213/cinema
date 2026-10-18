@@ -37,4 +37,10 @@ public interface GoodService {
      * @return
      */
     List<Good> getByCategoryId(Long categoryId);
+
+    /**
+     * 修改菜品
+     * @param goodDTO
+     */
+    void updateWithFlavors(GoodDTO goodDTO);
 }

@@ -70,7 +70,7 @@ public class GoodServiceImpl implements GoodService {
     public PageResult pageQuery(GoodPageQueryDTO goodPageQueryDTO) {
         PageHelper.startPage(goodPageQueryDTO.getPage(),goodPageQueryDTO.getPageSize());
 
-        Page<Good>page =goodMapper.pageQuery(goodPageQueryDTO);
+        Page<GoodVO>page =goodMapper.pageQuery(goodPageQueryDTO);
         PageResult pageResult = new PageResult(page.getTotal(),page.getResult());
         return pageResult;
     }
@@ -86,6 +86,18 @@ public class GoodServiceImpl implements GoodService {
                 .status(StatusConstant.ENABLE)
                 .build();
         return goodMapper.getGoodByCategoryId(good);
+    }
+
+    /**
+     * 修改菜品
+     * @param goodDTO
+     */
+    public void updateWithFlavors(GoodDTO goodDTO) {
+        Good good = new Good();
+        BeanUtils.copyProperties(goodDTO, good);
+
+        goodMapper.update(good);
+        //口味修改
     }
 
 

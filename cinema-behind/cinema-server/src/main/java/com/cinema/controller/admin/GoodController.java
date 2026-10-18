@@ -3,6 +3,7 @@ package com.cinema.controller.admin;
 import com.cinema.dto.GoodDTO;
 import com.cinema.dto.GoodPageQueryDTO;
 import com.cinema.entity.Good;
+import com.cinema.mapper.GoodMapper;
 import com.cinema.result.PageResult;
 import com.cinema.result.Result;
 import com.cinema.service.GoodService;
@@ -22,13 +23,14 @@ import java.util.List;
 public class GoodController {
     @Autowired
     private GoodService goodService;
+    @Autowired
+    private GoodMapper goodMapper;
 
     /**
      * 新增商品
      * @param goodDTO
      * @return
      */
-    //TODO 商品口味没添加
     @PostMapping
     @ApiOperation(value = "新增商品")
     public Result addGoodWithFlavors(@RequestBody GoodDTO goodDTO) {
@@ -71,5 +73,12 @@ public class GoodController {
     public Result<List<Good>> getByCategoryId(Long categoryId) {
         List<Good>goods =goodService.getByCategoryId(categoryId);
         return Result.success(goods);
+    }
+
+    @PutMapping
+    @ApiOperation(value = "修改商品")
+    public Result updateGoodWithFlavors(GoodDTO goodDTO) {
+        goodService.updateWithFlavors(goodDTO);
+        return Result.success();
     }
 }

@@ -4,6 +4,7 @@ import com.cinema.annotation.AutoFill;
 import com.cinema.dto.GoodPageQueryDTO;
 import com.cinema.entity.Good;
 import com.cinema.enumeration.OperationType;
+import com.cinema.vo.GoodVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -33,7 +34,7 @@ public interface GoodMapper {
      * @param goodPageQueryDTO
      * @return
      */
-    Page<Good> pageQuery(GoodPageQueryDTO goodPageQueryDTO);
+    Page<GoodVO> pageQuery(GoodPageQueryDTO goodPageQueryDTO);
 
     /**
      * 根据分类id查询商品
@@ -41,4 +42,10 @@ public interface GoodMapper {
      * @return
      */
     List<Good> getGoodByCategoryId(Good good);
+
+    /**
+     * 修改菜品
+     * @param good
+     */
+    void update(Good good);
 }
