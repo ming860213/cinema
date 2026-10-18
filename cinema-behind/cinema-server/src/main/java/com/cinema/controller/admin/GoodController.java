@@ -31,8 +31,8 @@ public class GoodController {
     //TODO 商品口味没添加
     @PostMapping
     @ApiOperation(value = "新增商品")
-    public Result addGood(@RequestBody GoodDTO goodDTO) {
-        goodService.save(goodDTO);
+    public Result addGoodWithFlavors(@RequestBody GoodDTO goodDTO) {
+        goodService.saveWithFlavors(goodDTO);
         return Result.success();
     }
 

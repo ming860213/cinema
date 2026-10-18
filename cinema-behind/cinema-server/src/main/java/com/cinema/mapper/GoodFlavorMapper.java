@@ -15,4 +15,10 @@ public interface GoodFlavorMapper {
      */
     @Select("select * from good_flavor where good_id =#{goodId}")
     List<GoodFlavor> getByGoodId(String goodId);
+
+    /**
+     * 口味新增
+     * @param goodFlavors
+     */
+    void saveFlavors(List<GoodFlavor> goodFlavors);
 }

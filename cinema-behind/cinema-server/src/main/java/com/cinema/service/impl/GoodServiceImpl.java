@@ -16,6 +16,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,10 +30,19 @@ public class GoodServiceImpl implements GoodService {
      * 新增商品
      * @param goodDTO
      */
-    public void save(GoodDTO goodDTO) {
+    public void saveWithFlavors(GoodDTO goodDTO) {
         Good good = new Good();
         BeanUtils.copyProperties(goodDTO, good);
-        goodMapper.save(good);
+        goodMapper.save(good);//现在商品进入数据库拥有id
+        Long goodId = good.getId();
+        List<GoodFlavor> goodFlavors = goodDTO.getFlavors();
+        if(goodFlavors!=null&&goodFlavors.size()>0){
+            for(GoodFlavor flavor:goodFlavors){
+                flavor.setId(goodId);
+            }
+        }
+        goodFlavorMapper.saveFlavors(goodFlavors);
+
     }
 
     /**

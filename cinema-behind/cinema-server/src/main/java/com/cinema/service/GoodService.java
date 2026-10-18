@@ -14,7 +14,7 @@ public interface GoodService {
      * 新增商品
      * @param goodDTO
      */
-    void save(GoodDTO goodDTO);
+    void saveWithFlavors(GoodDTO goodDTO);
 
     /**
      * 根据id查询商品
