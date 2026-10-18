@@ -36,7 +36,7 @@ public class GoodServiceImpl implements GoodService {
      * @param id
      * @return
      */
-    public GoodVO getGoodById(String id) {
+    public GoodVO getGoodByIdWithFlavors(String id) {
         Good good=goodMapper.getGoodById(id);
         List<GoodFlavor> flavors =goodFlavorMapper.getByGoodId(id);
         GoodVO goodVO=new GoodVO();

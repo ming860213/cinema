@@ -17,5 +17,5 @@ public interface GoodService {
      * @param id
      * @return
      */
-    GoodVO getGoodById(String id);
+    GoodVO getGoodByIdWithFlavors(String id);
 }

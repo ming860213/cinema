@@ -36,7 +36,7 @@ public class GoodController {
     @ApiOperation(value = "根据id查询商品")
     public Result<GoodVO> getGoodById(@PathVariable String id) {
         log.info("查询商品id：{}",id);
-        GoodVO goodVO=goodService.getGoodByIdWithFalvors(id);
+        GoodVO goodVO=goodService.getGoodByIdWithFlavors(id);
         return Result.success(goodVO);
     }
 }
