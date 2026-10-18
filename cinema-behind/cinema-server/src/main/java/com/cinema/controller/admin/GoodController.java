@@ -21,6 +21,11 @@ public class GoodController {
     @Autowired
     private GoodService goodService;
 
+    /**
+     * 新增商品
+     * @param goodDTO
+     * @return
+     */
     @PostMapping
     @ApiOperation(value = "新增商品")
     public Result addGood(@RequestBody GoodDTO goodDTO) {
