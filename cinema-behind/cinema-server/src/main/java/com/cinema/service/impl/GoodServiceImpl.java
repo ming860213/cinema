@@ -1,12 +1,16 @@
 package com.cinema.service.impl;
 
 import com.cinema.dto.GoodDTO;
+import com.cinema.dto.GoodPageQueryDTO;
 import com.cinema.entity.Good;
 import com.cinema.entity.GoodFlavor;
 import com.cinema.mapper.GoodFlavorMapper;
 import com.cinema.mapper.GoodMapper;
+import com.cinema.result.PageResult;
 import com.cinema.service.GoodService;
 import com.cinema.vo.GoodVO;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,4 +48,19 @@ public class GoodServiceImpl implements GoodService {
         goodVO.setFlavors(flavors);
         return goodVO;
     }
+
+    /**
+     * 商品分页查询
+     * @param goodPageQueryDTO
+     * @return
+     */
+    public PageResult pageQuery(GoodPageQueryDTO goodPageQueryDTO) {
+        PageHelper.startPage(goodPageQueryDTO.getPage(),goodPageQueryDTO.getPageSize());
+
+        Page<Good>page =goodMapper.pageQuery(goodPageQueryDTO);
+        PageResult pageResult = new PageResult(page.getTotal(),page.getResult());
+        return pageResult;
+    }
+
+
 }

@@ -90,8 +90,8 @@ public class EmployeeController {
     @GetMapping
     @ApiOperation(value = "员工分页查询")
     public Result<PageResult> page(@RequestBody EmployeePageQueryDTO employeePageQueryDTO){
-        PageResult PageQuery= employeeService.pageQuery(employeePageQueryDTO);
-        return Result.success(PageQuery);
+        PageResult pageResult= employeeService.pageQuery(employeePageQueryDTO);
+        return Result.success(pageResult);
     }
 
     /**

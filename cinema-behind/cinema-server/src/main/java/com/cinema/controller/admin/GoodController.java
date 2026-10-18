@@ -1,7 +1,9 @@
 package com.cinema.controller.admin;
 
 import com.cinema.dto.GoodDTO;
+import com.cinema.dto.GoodPageQueryDTO;
 import com.cinema.entity.Good;
+import com.cinema.result.PageResult;
 import com.cinema.result.Result;
 import com.cinema.service.GoodService;
 import com.cinema.vo.GoodVO;
@@ -31,12 +33,28 @@ public class GoodController {
         return Result.success();
     }
 
-    //TODO 需要加入口味
+    /**
+     * 根据id查询商品
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     @ApiOperation(value = "根据id查询商品")
     public Result<GoodVO> getGoodById(@PathVariable String id) {
         log.info("查询商品id：{}",id);
         GoodVO goodVO=goodService.getGoodByIdWithFlavors(id);
         return Result.success(goodVO);
+    }
+
+    /**
+     * 商品分页查询
+     * @param goodPageQueryDTO
+     * @return
+     */
+    @GetMapping("/page")
+    @ApiOperation(value = "商品分页查询")
+    public Result<PageResult> pageQuery(@RequestBody GoodPageQueryDTO goodPageQueryDTO) {
+        PageResult pageResult=goodService.pageQuery(goodPageQueryDTO);
+        return Result.success(pageResult);
     }
 }

@@ -1,6 +1,8 @@
 package com.cinema.service;
 
 import com.cinema.dto.GoodDTO;
+import com.cinema.dto.GoodPageQueryDTO;
+import com.cinema.result.PageResult;
 import com.cinema.vo.GoodVO;
 
 public interface GoodService {
@@ -18,4 +20,11 @@ public interface GoodService {
      * @return
      */
     GoodVO getGoodByIdWithFlavors(String id);
+
+    /**
+     * 商品分页查询
+     * @param goodPageQueryDTO
+     * @return
+     */
+    PageResult pageQuery(GoodPageQueryDTO goodPageQueryDTO);
 }
