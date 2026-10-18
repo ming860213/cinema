@@ -1,7 +1,9 @@
 package com.cinema.mapper;
 
+import com.cinema.annotation.AutoFill;
 import com.cinema.dto.GoodPageQueryDTO;
 import com.cinema.entity.Good;
+import com.cinema.enumeration.OperationType;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -15,6 +17,7 @@ public interface GoodMapper {
      * 新增商品
      * @param good
      */
+    @AutoFill(value = OperationType.INSERT)
     void save(Good good);
 
     /**
