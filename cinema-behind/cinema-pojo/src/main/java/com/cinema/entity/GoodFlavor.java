@@ -17,7 +17,7 @@ public class GoodFlavor implements Serializable {
 
     private Long id;
     //商品id
-    private Long dishId;
+    private Long goodId;
 
     //口味名称
     private String name;

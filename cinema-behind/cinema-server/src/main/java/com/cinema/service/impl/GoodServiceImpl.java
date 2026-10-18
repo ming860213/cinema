@@ -15,6 +15,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class GoodServiceImpl implements GoodService {
      * 新增商品
      * @param goodDTO
      */
+    @Transactional
     public void saveWithFlavors(GoodDTO goodDTO) {
         Good good = new Good();
         BeanUtils.copyProperties(goodDTO, good);
@@ -38,7 +40,7 @@ public class GoodServiceImpl implements GoodService {
         List<GoodFlavor> goodFlavors = goodDTO.getFlavors();
         if(goodFlavors!=null&&goodFlavors.size()>0){
             for(GoodFlavor flavor:goodFlavors){
-                flavor.setId(goodId);
+                flavor.setGoodId(goodId);
             }
         }
         goodFlavorMapper.saveFlavors(goodFlavors);
