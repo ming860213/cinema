@@ -6,6 +6,8 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface GoodMapper {
 
@@ -29,4 +31,11 @@ public interface GoodMapper {
      * @return
      */
     Page<Good> pageQuery(GoodPageQueryDTO goodPageQueryDTO);
+
+    /**
+     * 根据分类id查询商品
+     * @param good
+     * @return
+     */
+    List<Good> getGoodByCategoryId(Good good);
 }

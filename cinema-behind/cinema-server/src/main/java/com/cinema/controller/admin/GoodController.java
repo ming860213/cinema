@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin/good")
 @Api(tags ="商品相关接口")
@@ -26,6 +28,7 @@ public class GoodController {
      * @param goodDTO
      * @return
      */
+    //TODO 商品口味没添加
     @PostMapping
     @ApiOperation(value = "新增商品")
     public Result addGood(@RequestBody GoodDTO goodDTO) {
@@ -56,5 +59,17 @@ public class GoodController {
     public Result<PageResult> pageQuery(@RequestBody GoodPageQueryDTO goodPageQueryDTO) {
         PageResult pageResult=goodService.pageQuery(goodPageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 根据分类id查询商品
+     * @param categoryId
+     * @return
+     */
+    @GetMapping("/list")
+    @ApiOperation(value = "根据分类id查询商品")
+    public Result<List<Good>> getByCategoryId(Long categoryId) {
+        List<Good>goods =goodService.getByCategoryId(categoryId);
+        return Result.success(goods);
     }
 }

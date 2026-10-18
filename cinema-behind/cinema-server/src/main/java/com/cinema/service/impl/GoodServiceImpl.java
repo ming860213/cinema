@@ -1,5 +1,6 @@
 package com.cinema.service.impl;
 
+import com.cinema.constant.StatusConstant;
 import com.cinema.dto.GoodDTO;
 import com.cinema.dto.GoodPageQueryDTO;
 import com.cinema.entity.Good;
@@ -60,6 +61,19 @@ public class GoodServiceImpl implements GoodService {
         Page<Good>page =goodMapper.pageQuery(goodPageQueryDTO);
         PageResult pageResult = new PageResult(page.getTotal(),page.getResult());
         return pageResult;
+    }
+
+    /**
+     * 根据分类id查询商品
+     * @param categoryId
+     * @return
+     */
+    public List<Good> getByCategoryId(Long categoryId) {
+        Good good=Good.builder()
+                .categoryId(categoryId)
+                .status(StatusConstant.ENABLE)
+                .build();
+        return goodMapper.getGoodByCategoryId(good);
     }
 
 

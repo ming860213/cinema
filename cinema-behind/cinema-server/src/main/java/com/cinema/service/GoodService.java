@@ -2,8 +2,11 @@ package com.cinema.service;
 
 import com.cinema.dto.GoodDTO;
 import com.cinema.dto.GoodPageQueryDTO;
+import com.cinema.entity.Good;
 import com.cinema.result.PageResult;
 import com.cinema.vo.GoodVO;
+
+import java.util.List;
 
 public interface GoodService {
 
@@ -27,4 +30,11 @@ public interface GoodService {
      * @return
      */
     PageResult pageQuery(GoodPageQueryDTO goodPageQueryDTO);
+
+    /**
+     * 根据分类id查询商品
+     * @param categoryId
+     * @return
+     */
+    List<Good> getByCategoryId(Long categoryId);
 }
