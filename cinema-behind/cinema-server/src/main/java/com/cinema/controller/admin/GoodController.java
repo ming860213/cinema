@@ -70,7 +70,7 @@ public class GoodController {
      */
     @GetMapping("/list")
     @ApiOperation(value = "根据分类id查询商品")
-    public Result<List<Good>> getByCategoryId(Long categoryId) {
+    public Result<List<Good>> getByCategoryId(@RequestParam Long categoryId) {
         List<Good>goods =goodService.getByCategoryId(categoryId);
         return Result.success(goods);
     }
@@ -82,7 +82,7 @@ public class GoodController {
      */
     @PutMapping
     @ApiOperation(value = "修改商品")
-    public Result updateGoodWithFlavors(GoodDTO goodDTO) {
+    public Result updateGoodWithFlavors(@RequestBody GoodDTO goodDTO) {
         goodService.updateWithFlavors(goodDTO);
         return Result.success();
     }
@@ -95,7 +95,7 @@ public class GoodController {
      */
     @DeleteMapping
     @ApiOperation("删除菜品")
-    public Result deleteGoodByGoodIds(List<Long> goodIds) {
+    public Result deleteGoodByGoodIds(@RequestParam List<Long> goodIds) {
         goodService.deleteBatch(goodIds);
         return Result.success();
     }
