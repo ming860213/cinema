@@ -1,4 +1,9 @@
 package com.cinema.service.impl;
 
-public class SetMealServiceImpl {
+import com.cinema.service.SetMealService;
+import org.springframework.stereotype.Service;
+
+@Service
+public class SetMealServiceImpl implements SetMealService {
+
 }
