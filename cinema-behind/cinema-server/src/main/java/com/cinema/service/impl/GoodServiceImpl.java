@@ -105,10 +105,11 @@ public class GoodServiceImpl implements GoodService {
         if(goodFlavors!=null&&goodFlavors.size()>0){
           for(GoodFlavor flavor:goodFlavors){
               flavor.setGoodId(good.getId());
+              goodFlavorMapper.deleteBatchByGoodId(ids);
+              goodFlavorMapper.saveFlavors(goodFlavors);
           }
         }
-        goodFlavorMapper.deleteBatchByGoodId(ids);
-        goodFlavorMapper.saveFlavors(goodFlavors);
+
     }
 
 
