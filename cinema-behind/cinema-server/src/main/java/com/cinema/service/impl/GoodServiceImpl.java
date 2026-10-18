@@ -101,13 +101,13 @@ public class GoodServiceImpl implements GoodService {
         //口味修改
         List<Long>ids=new ArrayList<>();
         ids.add(good.getId());
+        goodFlavorMapper.deleteBatchByGoodId(ids);
         List<GoodFlavor> goodFlavors = goodDTO.getFlavors();
         if(goodFlavors!=null&&goodFlavors.size()>0){
           for(GoodFlavor flavor:goodFlavors){
               flavor.setGoodId(good.getId());
-              goodFlavorMapper.deleteBatchByGoodId(ids);
-              goodFlavorMapper.saveFlavors(goodFlavors);
           }
+            goodFlavorMapper.saveFlavors(goodFlavors);
         }
 
     }
