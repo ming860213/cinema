@@ -3,6 +3,7 @@ package com.cinema.service.impl;
 import com.cinema.dto.GoodDTO;
 import com.cinema.entity.Good;
 import com.cinema.entity.GoodFlavor;
+import com.cinema.mapper.GoodFlavorMapper;
 import com.cinema.mapper.GoodMapper;
 import com.cinema.service.GoodService;
 import com.cinema.vo.GoodVO;
@@ -17,6 +18,8 @@ public class GoodServiceImpl implements GoodService {
 
     @Autowired
     private GoodMapper goodMapper;
+    @Autowired
+    private GoodFlavorMapper goodFlavorMapper;
     /**
      * 新增商品
      * @param goodDTO
