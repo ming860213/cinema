@@ -99,4 +99,17 @@ public class GoodController {
         goodService.deleteBatch(goodIds);
         return Result.success();
     }
+
+    /**
+     * 商品起售或禁售
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation(value = "菜品起售或禁售")
+    public Result startOrStop(@PathVariable Integer status,@RequestParam Long id){
+        goodService.updateStatusByDishId(status,id);
+        return Result.success();
+    }
 }

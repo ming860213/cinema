@@ -49,4 +49,10 @@ public interface GoodService {
      * @param goodIds
      */
     void deleteBatch(List<Long> goodIds);
+
+    /**
+     * 改变商品的起售或禁售状态
+     * @param id,status
+     */
+    void updateStatusByDishId(Integer status, Long id);
 }
