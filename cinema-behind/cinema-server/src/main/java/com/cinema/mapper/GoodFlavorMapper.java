@@ -21,4 +21,10 @@ public interface GoodFlavorMapper {
      * @param goodFlavors
      */
     void saveFlavors(List<GoodFlavor> goodFlavors);
+
+    /**
+     * 删除商品口味
+     * @param goodIds
+     */
+    void deleteBatchByGoodId(List<Long> goodIds);
 }

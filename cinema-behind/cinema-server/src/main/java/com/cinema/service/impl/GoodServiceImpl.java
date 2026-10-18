@@ -92,12 +92,23 @@ public class GoodServiceImpl implements GoodService {
      * 修改菜品
      * @param goodDTO
      */
+    @Transactional
     public void updateWithFlavors(GoodDTO goodDTO) {
         Good good = new Good();
         BeanUtils.copyProperties(goodDTO, good);
-
         goodMapper.update(good);
+
         //口味修改
+        List<Long>ids=new ArrayList<>();
+        ids.add(good.getId());
+        List<GoodFlavor> goodFlavors = goodDTO.getFlavors();
+        if(goodFlavors!=null&&goodFlavors.size()>0){
+          for(GoodFlavor flavor:goodFlavors){
+              flavor.setGoodId(good.getId());
+          }
+        }
+        goodFlavorMapper.deleteBatchByGoodId(ids);
+        goodFlavorMapper.saveFlavors(goodFlavors);
     }
 
 
