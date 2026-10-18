@@ -1,12 +1,15 @@
 package com.cinema.service.impl;
 
+import com.cinema.constant.MessageConstant;
 import com.cinema.constant.StatusConstant;
 import com.cinema.dto.GoodDTO;
 import com.cinema.dto.GoodPageQueryDTO;
 import com.cinema.entity.Good;
 import com.cinema.entity.GoodFlavor;
+import com.cinema.exception.DeletionNotAllowedException;
 import com.cinema.mapper.GoodFlavorMapper;
 import com.cinema.mapper.GoodMapper;
+import com.cinema.mapper.SetMealMapper;
 import com.cinema.result.PageResult;
 import com.cinema.service.GoodService;
 import com.cinema.vo.GoodVO;
@@ -27,6 +30,8 @@ public class GoodServiceImpl implements GoodService {
     private GoodMapper goodMapper;
     @Autowired
     private GoodFlavorMapper goodFlavorMapper;
+    @Autowired
+    private SetMealMapper setMealMapper;
     /**
      * 新增商品
      * @param goodDTO
@@ -53,7 +58,7 @@ public class GoodServiceImpl implements GoodService {
      * @param id
      * @return
      */
-    public GoodVO getGoodByIdWithFlavors(String id) {
+    public GoodVO getGoodByIdWithFlavors(Long id) {
         Good good=goodMapper.getGoodById(id);
         List<GoodFlavor> flavors =goodFlavorMapper.getByGoodId(id);
         GoodVO goodVO=new GoodVO();
@@ -89,7 +94,7 @@ public class GoodServiceImpl implements GoodService {
     }
 
     /**
-     * 修改菜品
+     * 修改商品
      * @param goodDTO
      */
     @Transactional
@@ -101,7 +106,7 @@ public class GoodServiceImpl implements GoodService {
         //口味修改
         List<Long>ids=new ArrayList<>();
         ids.add(good.getId());
-        goodFlavorMapper.deleteBatchByGoodId(ids);
+        goodFlavorMapper.deleteBatchByGoodIds(ids);
         List<GoodFlavor> goodFlavors = goodDTO.getFlavors();
         if(goodFlavors!=null&&goodFlavors.size()>0){
           for(GoodFlavor flavor:goodFlavors){
@@ -110,6 +115,27 @@ public class GoodServiceImpl implements GoodService {
             goodFlavorMapper.saveFlavors(goodFlavors);
         }
 
+    }
+
+    /**
+     * 商品删除
+     * @param goodIds
+     */
+    @Transactional
+    public void deleteBatch(List<Long> goodIds) {
+        //判断商品是否起售
+        for(Long goodId:goodIds){
+            if(goodMapper.getGoodById(goodId).getStatus()==StatusConstant.ENABLE){
+                throw new DeletionNotAllowedException(MessageConstant.DELETE_ON_SALE);
+            }
+        }
+        //判断商品是否与套餐关联
+       List<Long>setMealIds=setMealMapper.getSetMealIdsByGoodIds(goodIds);
+        if(setMealIds!=null&&setMealIds.size()>0){
+            throw new DeletionNotAllowedException(MessageConstant.RELATE_SETMEAL);
+        }
+        goodMapper.deleteBatch(goodIds);
+        goodFlavorMapper.deleteBatchByGoodIds(goodIds);
     }
 
 

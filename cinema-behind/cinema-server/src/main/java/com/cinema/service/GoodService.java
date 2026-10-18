@@ -22,7 +22,7 @@ public interface GoodService {
      * @param id
      * @return
      */
-    GoodVO getGoodByIdWithFlavors(String id);
+    GoodVO getGoodByIdWithFlavors(Long id);
 
     /**
      * 商品分页查询
@@ -43,4 +43,10 @@ public interface GoodService {
      * @param goodDTO
      */
     void updateWithFlavors(GoodDTO goodDTO);
+
+    /**
+     * 删除商品
+     * @param goodIds
+     */
+    void deleteBatch(List<Long> goodIds);
 }

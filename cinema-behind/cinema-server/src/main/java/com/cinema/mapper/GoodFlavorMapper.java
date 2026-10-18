@@ -14,7 +14,7 @@ public interface GoodFlavorMapper {
      * @return
      */
     @Select("select * from good_flavor where good_id =#{goodId}")
-    List<GoodFlavor> getByGoodId(String goodId);
+    List<GoodFlavor> getByGoodId(Long goodId);
 
     /**
      * 口味新增
@@ -26,5 +26,5 @@ public interface GoodFlavorMapper {
      * 删除商品口味
      * @param goodIds
      */
-    void deleteBatchByGoodId(List<Long> goodIds);
+    void deleteBatchByGoodIds(List<Long> goodIds);
 }

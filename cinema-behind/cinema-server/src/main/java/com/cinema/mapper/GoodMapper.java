@@ -27,7 +27,7 @@ public interface GoodMapper {
      * @return
      */
     @Select("select * from good where id =#{id}")
-    Good getGoodById(String id);
+    Good getGoodById(Long id);
 
     /**
      * 商品分页查询
@@ -44,8 +44,14 @@ public interface GoodMapper {
     List<Good> getGoodByCategoryId(Good good);
 
     /**
-     * 修改菜品
+     * 修改商品
      * @param good
      */
     void update(Good good);
+
+    /**
+     * 删除商品
+     * @param goodIds
+     */
+    void deleteBatch(List<Long> goodIds);
 }

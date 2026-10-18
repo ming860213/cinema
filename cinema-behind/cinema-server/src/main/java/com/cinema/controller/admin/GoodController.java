@@ -45,7 +45,7 @@ public class GoodController {
      */
     @GetMapping("/{id}")
     @ApiOperation(value = "根据id查询商品")
-    public Result<GoodVO> getGoodById(@PathVariable String id) {
+    public Result<GoodVO> getGoodById(@PathVariable Long id) {
         log.info("查询商品id：{}",id);
         GoodVO goodVO=goodService.getGoodByIdWithFlavors(id);
         return Result.success(goodVO);
@@ -75,10 +75,28 @@ public class GoodController {
         return Result.success(goods);
     }
 
+    /**
+     * 修改商品
+     * @param goodDTO
+     * @return
+     */
     @PutMapping
     @ApiOperation(value = "修改商品")
     public Result updateGoodWithFlavors(GoodDTO goodDTO) {
         goodService.updateWithFlavors(goodDTO);
+        return Result.success();
+    }
+
+
+    /**
+     * 删除商品
+     * @param goodIds
+     * @return
+     */
+    @DeleteMapping
+    @ApiOperation("删除菜品")
+    public Result deleteGoodByGoodIds(List<Long> goodIds) {
+        goodService.deleteBatch(goodIds);
         return Result.success();
     }
 }

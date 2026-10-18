@@ -20,6 +20,12 @@
     </set>>
         where id=#{id}
     </update>
+    <delete id="deleteBatch">
+        delete from good where id in
+        <foreach collection="goodIds" open="(" close=")" separator="," item="goodId">
+                #{goodId}
+        </foreach>
+    </delete>
 
 
     <select id="getGoodByCategoryId" resultType="com.cinema.entity.Good">
