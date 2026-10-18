@@ -3,7 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cinema.mapper.SetMealMapper">
 
-    <select id="getSetMealIdsByGoodIds" resultType="com.cinema.entity.SetMeal">
+
+    <select id="getSetMealIdsByGoodIds" resultType="java.lang.Long">
         select setmeal_id from setmeal_good where id in
         <foreach collection="goodIds" item="goodId" close=")" open="(" separator=",">
             #{goodId}
