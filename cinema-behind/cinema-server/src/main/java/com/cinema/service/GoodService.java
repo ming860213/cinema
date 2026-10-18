@@ -54,5 +54,5 @@ public interface GoodService {
      * 改变商品的起售或禁售状态
      * @param id,status
      */
-    void updateStatusByDishId(Integer status, Long id);
+    void updateStatusByGoodId(Integer status, Long id);
 }

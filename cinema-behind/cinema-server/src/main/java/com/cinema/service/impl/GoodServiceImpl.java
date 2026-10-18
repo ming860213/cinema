@@ -139,10 +139,10 @@ public class GoodServiceImpl implements GoodService {
     }
 
     /**
-     * 菜品的起售或禁售
+     * 商品的起售或禁售
      * @param id
      */
-    public void updateStatusByDishId(Integer status,Long id) {
+    public void updateStatusByGoodId(Integer status, Long id) {
         Good good = Good.builder()
                 .id(id)
                 .status(status)

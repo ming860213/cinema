@@ -107,9 +107,9 @@ public class GoodController {
      * @return
      */
     @PostMapping("/status/{status}")
-    @ApiOperation(value = "菜品起售或禁售")
+    @ApiOperation(value = "商品起售或禁售")
     public Result startOrStop(@PathVariable Integer status,@RequestParam Long id){
-        goodService.updateStatusByDishId(status,id);
+        goodService.updateStatusByGoodId(status,id);
         return Result.success();
     }
 }
