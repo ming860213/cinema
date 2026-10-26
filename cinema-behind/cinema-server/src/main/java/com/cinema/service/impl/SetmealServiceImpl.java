@@ -2,11 +2,16 @@
 package com.cinema.service.impl;
 
 import com.cinema.dto.SetmealDTO;
+import com.cinema.dto.SetmealPageQueryDTO;
 import com.cinema.entity.Setmeal;
 import com.cinema.entity.SetmealGood;
 import com.cinema.mapper.SetmealGoodMapper;
 import com.cinema.mapper.SetmealMapper;
+import com.cinema.result.PageResult;
 import com.cinema.service.SetmealService;
+import com.cinema.vo.SetmealVO;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +44,17 @@ public class SetmealServiceImpl implements SetmealService {
         //套餐菜品表插入list信息
         SetmealGoodMapper.insertBatch(setmealGoods);
 
+    }
+
+    /**
+     * 套餐分页查询
+     * @param setmealPageQueryDTO
+     * @return
+     */
+    public PageResult page(SetmealPageQueryDTO setmealPageQueryDTO) {
+        PageHelper.startPage(setmealPageQueryDTO.getPage(),setmealPageQueryDTO.getPageSize());
+        Page<SetmealVO>page=setmealMapper.pageQuery(setmealPageQueryDTO);
+
+        return new PageResult(page.getTotal(),page.getResult());
     }
 }

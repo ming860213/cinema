@@ -1,8 +1,11 @@
 package com.cinema.mapper;
 
 import com.cinema.annotation.AutoFill;
+import com.cinema.dto.SetmealPageQueryDTO;
 import com.cinema.entity.Setmeal;
 import com.cinema.enumeration.OperationType;
+import com.cinema.vo.SetmealVO;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -24,4 +27,11 @@ public interface SetmealMapper {
      */
     @AutoFill(value= OperationType.INSERT)
     void insert(Setmeal setmeal);
+
+    /**
+     * 套餐分页查询
+     * @param setmealPageQueryDTO
+     * @return
+     */
+    Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
 }
