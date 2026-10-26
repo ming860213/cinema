@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SetMeal implements Serializable {
+public class Setmeal implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;

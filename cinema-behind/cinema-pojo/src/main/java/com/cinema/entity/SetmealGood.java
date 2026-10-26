@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SetMealGood implements Serializable {
+public class SetmealGood implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;

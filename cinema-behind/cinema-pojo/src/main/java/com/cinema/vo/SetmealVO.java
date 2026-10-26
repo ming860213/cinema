@@ -1,6 +1,6 @@
 package com.cinema.vo;
 
-import com.cinema.entity.SetMealGood;
+import com.cinema.entity.SetmealGood;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SetMealVO implements Serializable {
+public class SetmealVO implements Serializable {
 
     private Long id;
 
@@ -44,5 +44,5 @@ public class SetMealVO implements Serializable {
     private String categoryName;
 
     //套餐和商品的关联关系
-    private List<SetMealGood> setMealDishes = new ArrayList<>();
+    private List<SetmealGood> setMealDishes = new ArrayList<>();
 }

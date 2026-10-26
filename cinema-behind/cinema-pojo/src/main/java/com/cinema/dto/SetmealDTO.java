@@ -1,6 +1,6 @@
 package com.cinema.dto;
 
-import com.cinema.entity.SetMealGood;
+import com.cinema.entity.SetmealGood;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class SetMealDTO {
+public class SetmealDTO {
 
     private Long id;
 
@@ -31,5 +31,5 @@ public class SetMealDTO {
     private String image;
 
     //套餐菜品关系
-    private List<SetMealGood> setMealGoods = new ArrayList<>();
+    private List<SetmealGood> setmealGoods = new ArrayList<>();
 }

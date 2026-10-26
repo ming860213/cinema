@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Api(tags = "套餐相关接口")
-@RequestMapping
-public class SetMealController {
+@RequestMapping("/admin/setmeal")
+public class SetmealController {
 }

@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SetMealOverViewVO implements Serializable {
+public class SetmealOverViewVO implements Serializable {
     // 已启售数量
     private Integer sold;
 

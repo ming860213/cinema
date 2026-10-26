@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface SetMealMapper {
+public interface SetmealMapper {
 
     /**
      * 通过id查询套餐内商品

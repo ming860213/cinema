@@ -9,7 +9,7 @@ import com.cinema.entity.GoodFlavor;
 import com.cinema.exception.DeletionNotAllowedException;
 import com.cinema.mapper.GoodFlavorMapper;
 import com.cinema.mapper.GoodMapper;
-import com.cinema.mapper.SetMealMapper;
+import com.cinema.mapper.SetmealMapper;
 import com.cinema.result.PageResult;
 import com.cinema.service.GoodService;
 import com.cinema.vo.GoodVO;
@@ -31,7 +31,7 @@ public class GoodServiceImpl implements GoodService {
     @Autowired
     private GoodFlavorMapper goodFlavorMapper;
     @Autowired
-    private SetMealMapper setMealMapper;
+    private SetmealMapper setMealMapper;
     /**
      * 新增商品
      * @param goodDTO
