@@ -19,4 +19,5 @@ public class MessageConstant {
     public static final String ORDER_NOT_FOUND = "订单不存在";
     public static final String DELETE_ON_SALE="商品处于起售中";
     public static final String RELATE_SETMEAL="商品与套餐关联";
+    public static final String SETMEAL_ON_SALE = "套餐处于起售中";
 }

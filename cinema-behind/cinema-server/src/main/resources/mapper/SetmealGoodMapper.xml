@@ -9,6 +9,13 @@
              (#{setmealGood.setmealId},#{setmealGood.goodId},#{setmealGood.name},#{setmealGood.price},#{setmealGood.copies})
         </foreach>
     </insert>
+    <delete id="deleteBatch">
+        delete from setmeal_good where
+            setmeal_id in
+            <foreach collection="ids" item="setmealId">
+                #{id}
+            </foreach>
+    </delete>
     <select id="getBySetmealId" resultType="com.cinema.entity.SetmealGood">
         select * from setmeal_good where setmeal_id =#{setmealId}
     </select>

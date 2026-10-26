@@ -21,4 +21,10 @@ public interface SetmealGoodMapper {
      * @return
      */
     List<SetmealGood> getBySetmealId(Long setmealId);
+
+    /**
+     * 批量删除套餐商品
+     * @param ids
+     */
+    void deleteBatch(List<Long> ids);
 }

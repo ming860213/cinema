@@ -1,10 +1,13 @@
 
 package com.cinema.service.impl;
 
+import com.cinema.constant.MessageConstant;
+import com.cinema.constant.StatusConstant;
 import com.cinema.dto.SetmealDTO;
 import com.cinema.dto.SetmealPageQueryDTO;
 import com.cinema.entity.Setmeal;
 import com.cinema.entity.SetmealGood;
+import com.cinema.exception.DeletionNotAllowedException;
 import com.cinema.mapper.SetmealGoodMapper;
 import com.cinema.mapper.SetmealMapper;
 import com.cinema.result.PageResult;
@@ -15,6 +18,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -71,5 +75,23 @@ public class SetmealServiceImpl implements SetmealService {
         List<SetmealGood>setmealGoods=setmealGoodMapper.getBySetmealId(id);
         setmealVO.setSetmealGoods(setmealGoods);
         return setmealVO;
+    }
+
+    /**
+     * 批量删除套餐
+     * @param ids
+     */
+    @Transactional
+    public void delete(List<Long> ids) {
+        //先遍历，若套餐在起售中则抛异常
+        for(Long id:ids){
+            Setmeal setmeal =setmealMapper.getById(id);
+            if(setmeal.getStatus()== StatusConstant.ENABLE){
+                 throw new DeletionNotAllowedException(MessageConstant.SETMEAL_ON_SALE);
+            }
+        }
+        setmealMapper.deleteBatch(ids);
+        //删套餐商品表
+        setmealGoodMapper.deleteBatch(ids);
     }
 }

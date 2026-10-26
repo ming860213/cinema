@@ -5,6 +5,8 @@ import com.cinema.dto.SetmealPageQueryDTO;
 import com.cinema.result.PageResult;
 import com.cinema.vo.SetmealVO;
 
+import java.util.List;
+
 public interface SetmealService {
 
     /**
@@ -26,4 +28,10 @@ public interface SetmealService {
      * @param id
      */
     SetmealVO getByIdWithGood(Long id);
+
+    /**
+     * 批量删除套餐
+     * @param ids
+     */
+    void delete(List<Long> ids);
 }
