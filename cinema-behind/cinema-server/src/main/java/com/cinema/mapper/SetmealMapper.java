@@ -52,4 +52,5 @@ public interface SetmealMapper {
      */
     void deleteBatch(List<Long> ids);
 
+    void update(Setmeal setmeal);
 }

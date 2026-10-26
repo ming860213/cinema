@@ -94,4 +94,17 @@ public class SetmealServiceImpl implements SetmealService {
         //删套餐商品表
         setmealGoodMapper.deleteBatch(ids);
     }
+
+    /**
+     * 套餐起售或停售
+     * @param status
+     * @param id
+     */
+    public void startOrStop(Integer status, Long id) {
+        Setmeal setmeal=setmealMapper.getById(id);
+        if(setmeal.getStatus()== StatusConstant.ENABLE){
+            setmeal.setStatus(status);
+            setmealMapper.update(setmeal);
+        }
+    }
 }
