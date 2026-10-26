@@ -57,4 +57,14 @@ public class SetmealServiceImpl implements SetmealService {
 
         return new PageResult(page.getTotal(),page.getResult());
     }
+
+    /**
+     * 根据id查询套餐
+     * @param id
+     */
+    public SetmealVO getByIdWithGood(Long id) {
+        //先从套餐表中取出对应套餐数据
+
+        //再从套餐商品表中取出对应数据List<Setmeal>
+    }
 }

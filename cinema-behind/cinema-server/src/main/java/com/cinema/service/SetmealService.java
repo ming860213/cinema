@@ -3,6 +3,7 @@ package com.cinema.service;
 import com.cinema.dto.SetmealDTO;
 import com.cinema.dto.SetmealPageQueryDTO;
 import com.cinema.result.PageResult;
+import com.cinema.vo.SetmealVO;
 
 public interface SetmealService {
 
@@ -19,4 +20,10 @@ public interface SetmealService {
      * @return
      */
     PageResult page(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    /**
+     * 根据id查询套餐
+     * @param id
+     */
+    SetmealVO getByIdWithGood(Long id);
 }

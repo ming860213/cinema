@@ -5,13 +5,11 @@ import com.cinema.dto.SetmealPageQueryDTO;
 import com.cinema.result.PageResult;
 import com.cinema.result.Result;
 import com.cinema.service.SetmealService;
+import com.cinema.vo.SetmealVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Api(tags = "套餐相关接口")
@@ -28,7 +26,7 @@ public class SetmealController {
      */
     @PostMapping
     @ApiOperation(value = "新增套餐")
-    public Result save(SetmealDTO setmealDTO) {
+    public Result save(@RequestBody SetmealDTO setmealDTO) {
         setmealService.save(setmealDTO);
         return Result.success();
     }
@@ -40,8 +38,20 @@ public class SetmealController {
      */
     @GetMapping("/page")
     @ApiOperation(value = "套餐分页查询")
-    public Result<PageResult>page(SetmealPageQueryDTO setmealPageQueryDTO){
+    public Result<PageResult>page( SetmealPageQueryDTO setmealPageQueryDTO){
         PageResult pageResult=setmealService.page(setmealPageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 根据id查询套餐
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation(value = "根据id查询套餐")
+    public Result<SetmealVO> getById(@PathVariable Long id){
+        SetmealVO setmealVO =setmealService.getByIdWithGood(id);
+        return Result.success(setmealVO);
     }
 }
