@@ -7,6 +7,7 @@ import com.cinema.enumeration.OperationType;
 import com.cinema.vo.SetmealVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface SetmealMapper {
      * @param goodIds
      * @return
      */
-    List<Long> getSetMealIdsByGoodIds(List<Long> goodIds);
+    List<Long> getSetmealIdsByGoodIds(List<Long> goodIds);
 
     /**
      * 插入套餐
@@ -34,4 +35,13 @@ public interface SetmealMapper {
      * @return
      */
     Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
+
+
+    /**
+     * 通过id查询套餐
+     * @param id
+     * @return
+     */
+    @Select("select * from setmeal where id=#{id}")
+    Setmeal getById(Long id);
 }

@@ -8,7 +8,7 @@
     </insert>
 
 
-    <select id="getSetMealIdsByGoodIds" resultType="java.lang.Long">
+    <select id="getSetmealIdsByGoodIds" resultType="java.lang.Long">
         select setmeal_id from setmeal_good where id in
         <foreach collection="goodIds" item="goodId" close=")" open="(" separator=",">
             #{goodId}

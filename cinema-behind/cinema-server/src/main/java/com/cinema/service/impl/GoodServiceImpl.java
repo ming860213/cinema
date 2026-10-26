@@ -31,7 +31,7 @@ public class GoodServiceImpl implements GoodService {
     @Autowired
     private GoodFlavorMapper goodFlavorMapper;
     @Autowired
-    private SetmealMapper setMealMapper;
+    private SetmealMapper setmealMapper;
     /**
      * 新增商品
      * @param goodDTO
@@ -130,8 +130,8 @@ public class GoodServiceImpl implements GoodService {
             }
         }
         //判断商品是否与套餐关联
-       List<Long>setMealIds=setMealMapper.getSetMealIdsByGoodIds(goodIds);
-        if(setMealIds!=null&&setMealIds.size()>0){
+       List<Long>setmealIds=setmealMapper.getSetmealIdsByGoodIds(goodIds);
+        if(setmealIds!=null&&setmealIds.size()>0){
             throw new DeletionNotAllowedException(MessageConstant.RELATE_SETMEAL);
         }
         goodMapper.deleteBatch(goodIds);

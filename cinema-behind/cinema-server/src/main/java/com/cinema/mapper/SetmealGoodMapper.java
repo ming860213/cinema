@@ -14,4 +14,11 @@ public interface SetmealGoodMapper {
      */
     static void insertBatch(List<SetmealGood> setmealGoods) {
     }
+
+    /**
+     * 通过套餐id查询套餐内商品
+     * @param setmealId
+     * @return
+     */
+    List<SetmealGood> getBySetmealId(Long setmealId);
 }

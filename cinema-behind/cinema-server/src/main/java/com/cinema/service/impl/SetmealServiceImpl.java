@@ -64,7 +64,12 @@ public class SetmealServiceImpl implements SetmealService {
      */
     public SetmealVO getByIdWithGood(Long id) {
         //先从套餐表中取出对应套餐数据
-
+        Setmeal setmeal=setmealMapper.getById(id);
+        SetmealVO setmealVO=new SetmealVO();
+        BeanUtils.copyProperties(setmeal,setmealVO);
         //再从套餐商品表中取出对应数据List<Setmeal>
+        List<SetmealGood>setmealGoods=setmealGoodMapper.getBySetmealId(id);
+        setmealVO.setSetmealGoods(setmealGoods);
+        return setmealVO;
     }
 }

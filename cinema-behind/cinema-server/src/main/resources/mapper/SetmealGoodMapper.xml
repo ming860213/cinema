@@ -9,4 +9,7 @@
              (#{setmealGood.setmealId},#{setmealGood.goodId},#{setmealGood.name},#{setmealGood.price},#{setmealGood.copies})
         </foreach>
     </insert>
+    <select id="getBySetmealId" resultType="com.cinema.entity.SetmealGood">
+        select * from setmeal_good where setmeal_id =#{setmealId}
+    </select>
 </mapper>
