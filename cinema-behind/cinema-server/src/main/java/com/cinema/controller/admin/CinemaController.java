@@ -35,7 +35,7 @@ public class CinemaController {
     @ApiOperation(value = "获取影院营业状态")
     public Result<Integer> getStatus() {
          Integer status = (Integer) redisTemplate.opsForValue().get(STATUS);
-         log.info("店铺的营业状态为:{}",status ==1 ? "营业中":"打烊中");
+         log.info("影院的营业状态为:{}",status ==1 ? "营业中":"打烊中");
          return Result.success(status);
     }
 }
