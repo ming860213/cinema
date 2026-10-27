@@ -12,8 +12,7 @@ public interface SetmealGoodMapper {
      * 插入对应套餐菜品
      * @param setmealGoods
      */
-    void insertBatch(List<SetmealGood> setmealGoods) {
-    }
+    void insertBatch(List<SetmealGood> setmealGoods);
 
     /**
      * 通过套餐id查询套餐内商品
