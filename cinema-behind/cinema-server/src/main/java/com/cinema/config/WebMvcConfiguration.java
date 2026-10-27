@@ -46,7 +46,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * @return
      */
     @Bean
-    public Docket docket() {
+    public Docket docket1() {
         log.info("准备生成接口文档");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("影院管理系统接口文档")
@@ -54,6 +54,23 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .description("影院管理系统接口文档")
                 .build();
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName("管理端接口")
+                .apiInfo(apiInfo)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.cinema.controller"))
+                .paths(PathSelectors.any())
+                .build();
+        return docket;
+    }
+    public Docket docket2() {
+        log.info("准备生成接口文档");
+        ApiInfo apiInfo = new ApiInfoBuilder()
+                .title("影院管理系统接口文档")
+                .version("1.0")
+                .description("影院管理系统接口文档")
+                .build();
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName("用户端接口")
                 .apiInfo(apiInfo)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.cinema.controller"))
