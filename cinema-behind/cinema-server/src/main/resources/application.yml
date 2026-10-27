@@ -12,7 +12,10 @@ spring:
       url: jdbc:mysql://${cinema.datasource.host}:${cinema.datasource.port}/${cinema.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: ${cinema.datasource.username}
       password: ${cinema.datasource.password}
-
+  redis:
+    port: ${sky.redis.port}
+    host: ${sky.redis.host}
+    database: ${sky.redis.database}
 mybatis:
   #mapper配置文件
   mapper-locations: classpath:mapper/*.xml
@@ -42,3 +45,6 @@ cinema:
     access-key-id: ${cinema.alioss.access-key-id}
     access-key-secret: ${cinema.alioss.access-key-secret}
     bucket-name: ${cinema.alioss.bucket-name}
+  wechat:
+    appid: ${sky.wechat.appid}
+    secret: ${sky.wechat.secret}
