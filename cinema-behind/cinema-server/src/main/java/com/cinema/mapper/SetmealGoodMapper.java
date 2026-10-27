@@ -12,7 +12,7 @@ public interface SetmealGoodMapper {
      * 插入对应套餐菜品
      * @param setmealGoods
      */
-    static void insertBatch(List<SetmealGood> setmealGoods) {
+    void insertBatch(List<SetmealGood> setmealGoods) {
     }
 
     /**

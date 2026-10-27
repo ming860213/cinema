@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,7 +47,7 @@ public class SetmealServiceImpl implements SetmealService {
             setmealGood.setSetmealId(setmealId);
         }
         //套餐菜品表插入list信息
-        SetmealGoodMapper.insertBatch(setmealGoods);
+        setmealGoodMapper.insertBatch(setmealGoods);
 
     }
 
@@ -106,5 +107,30 @@ public class SetmealServiceImpl implements SetmealService {
             setmeal.setStatus(status);
             setmealMapper.update(setmeal);
         }
+    }
+
+    /**
+     * 修改套餐
+     * @param setmealDTO
+     */
+    public void update(SetmealDTO setmealDTO) {
+        //先获取setmeal对象和对应套餐商品的列表
+        Setmeal setmeal = new  Setmeal();
+        BeanUtils.copyProperties(setmealDTO,setmeal);
+        List<SetmealGood>setmealGoods= setmealDTO.getSetmealGoods();
+
+        //给套餐商品set套餐id
+        for(SetmealGood setmealGood:setmealGoods){
+            setmealGood.setSetmealId(setmeal.getId());
+        }
+        //更新套餐表数据
+        setmealMapper.update(setmeal);
+        //删套餐商品表数据，再插入
+        List<Long>setmealId=new ArrayList<>();
+        setmealId.add(setmeal.getId());
+        setmealGoodMapper.deleteBatch(setmealId);
+        setmealGoodMapper.insertBatch(setmealGoods);
+
+
     }
 }

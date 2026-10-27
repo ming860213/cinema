@@ -2,6 +2,7 @@ package com.cinema.controller.admin;
 
 import com.cinema.dto.SetmealDTO;
 import com.cinema.dto.SetmealPageQueryDTO;
+import com.cinema.mapper.SetmealMapper;
 import com.cinema.result.PageResult;
 import com.cinema.result.Result;
 import com.cinema.service.SetmealService;
@@ -20,6 +21,8 @@ public class SetmealController {
 
     @Autowired
     private SetmealService setmealService;
+    @Autowired
+    private SetmealMapper setmealMapper;
 
     /**
      * 新增套餐
@@ -70,10 +73,23 @@ public class SetmealController {
         return Result.success();
     }
 
+    /**
+     * 套餐起售或停售
+     * @param status
+     * @param id
+     * @return
+     */
     @PostMapping("/stastus/{status}")
     @ApiOperation(value = "套餐起售或停售")
     public Result startOrStop(@PathVariable Integer status,Long id){
         setmealService.startOrStop(status,id);
+        return Result.success();
+    }
+
+    @PutMapping
+    @ApiOperation(value = "修改套餐")
+    public Result update(@RequestBody SetmealDTO setmealDTO){
+        setmealService.update(setmealDTO);
         return Result.success();
     }
 }

@@ -1,6 +1,7 @@
 package com.cinema.mapper;
 
 import com.cinema.annotation.AutoFill;
+import com.cinema.dto.SetmealDTO;
 import com.cinema.dto.SetmealPageQueryDTO;
 import com.cinema.entity.Setmeal;
 import com.cinema.enumeration.OperationType;
@@ -53,4 +54,5 @@ public interface SetmealMapper {
     void deleteBatch(List<Long> ids);
 
     void update(Setmeal setmeal);
+
 }
