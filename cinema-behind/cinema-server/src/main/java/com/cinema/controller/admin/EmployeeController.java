@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@RestController("adminEmployeeCOntroller")
 @RequestMapping("admin/employee")
 @Slf4j
 @Api(tags ="员工相关接口")
